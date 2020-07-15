@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.treasureHunt
+package com.vanh.android.treasureHunt
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -26,6 +26,9 @@ import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
 
+private const val NOTIFICATION_ID = 33
+private const val CHANNEL_ID = "GeofenceChannel"
+
 /*
  * We need to create a NotificationChannel associated with our CHANNEL_ID before sending a
  * notification.
@@ -35,12 +38,8 @@ fun createChannel(context: Context) {
         val notificationChannel = NotificationChannel(
             CHANNEL_ID,
             context.getString(R.string.channel_name),
-
             NotificationManager.IMPORTANCE_HIGH
-        )
-            .apply {
-                setShowBadge(false)
-            }
+        ).apply { setShowBadge(false) }
 
         notificationChannel.enableLights(true)
         notificationChannel.lightColor = Color.RED
@@ -66,10 +65,7 @@ fun NotificationManager.sendGeofenceEnteredNotification(context: Context, foundI
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT
     )
-    val mapImage = BitmapFactory.decodeResource(
-        context.resources,
-        R.drawable.map_small
-    )
+    val mapImage = BitmapFactory.decodeResource(context.resources, R.drawable.map_small)
     val bigPicStyle = NotificationCompat.BigPictureStyle()
         .bigPicture(mapImage)
         .bigLargeIcon(null)
@@ -88,8 +84,5 @@ fun NotificationManager.sendGeofenceEnteredNotification(context: Context, foundI
 
     notify(NOTIFICATION_ID, builder.build())
 }
-
-private const val NOTIFICATION_ID = 33
-private const val CHANNEL_ID = "GeofenceChannel"
 
 

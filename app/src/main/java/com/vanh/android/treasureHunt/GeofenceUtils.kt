@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.treasureHunt
+package com.vanh.android.treasureHunt
 
 import android.content.Context
 import com.google.android.gms.location.GeofenceStatusCodes
@@ -46,7 +46,6 @@ fun errorMessage(context: Context, errorCode: Int): String {
 data class LandmarkDataObject(val id: String, val hint: Int, val name: Int, val latLong: LatLng)
 
 internal object GeofencingConstants {
-
     /**
      * Used to set an expiration time for a geofence. After this amount of time, Location services
      * stops tracking the geofence. For this sample, geofences expire after one hour.
